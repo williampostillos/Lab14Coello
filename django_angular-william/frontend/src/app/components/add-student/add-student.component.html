@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <style>
+      /* General Styles */
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+      }
+
+      .navbar {
+          background-color: #343a40;
+          padding: 1rem;
+      }
+
+      .navbar .nav-link {
+          color: #fff;
+          margin-right: 1rem;
+          text-decoration: none;
+      }
+
+      .navbar .nav-link:hover {
+          color: #ccc;
+      }
+
+      .navbar .nav-link.active {
+          font-weight: bold;
+      }
+
+      .container {
+          max-width: 600px;
+          margin: 2rem auto;
+          background: #fff;
+          padding: 2rem;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+          text-align: center;
+          margin-bottom: 1.5rem;
+          color: #333;
+      }
+
+      .form-group {
+          margin-bottom: 1rem;
+      }
+
+      .form-label {
+          display: block;
+          margin-bottom: 0.5rem;
+          color: #555;
+      }
+
+      .form-control {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .btn-primary {
+          display: inline-block;
+          padding: 0.75rem 1.25rem;
+          font-size: 1rem;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: center;
+      }
+
+      .btn-primary:disabled {
+          background-color: #ccc;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+          background-color: #0056b3;
+      }
+  </style>
+</head>
+<body>
+    <!--Navbar consists only Home and Add User-->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="navbar-nav">
+        <a class="nav-link active text-white" aria-current="page" routerLink="/">Inicio</a>
+        <a class="nav-link text-white" routerLink="/add">Agregar Alumno</a>
+        <a class="nav-link text-white" routerLink="/courses">Cursos</a>
+        <a class="nav-link text-white" routerLink="/addcourse">Agregar Curso</a>
+      </div>
+    </nav>
+
+        <!--Form to add user  name: string email: string gender: string-->
+
+        <div class="my-5">
+            <div class="mx-auto w-25 " style="max-width:100%;">
+              <h2 class="text-center mb-3">Agregar Nuevo Alumno</h2>
+              <form [formGroup]="form" (ngSubmit)="addStudent()">
+                <!--name-->
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="name" class="form-label">Nombre :</label>
+                    <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="Nombre" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="lastname" class="form-label">Apellido :</label>
+                    <input id="lastname"  formControlName="lastname" type="text" name="lastname" class="form-control" placeholder="Apellido" required>
+                  </div>
+                </div>
+
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="course" class="form-label">Cursos :</label>
+                      <select id="course" formControlName="course" class="form-control" required>
+                        <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input [disabled]="!form.valid" class="btn btn-primary w-100" type="submit" value="Submit">
+                  </div>
+                </div>
+
+                <div>
+
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users</title>
+    <style>
+
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+      }
+
+      .navbar {
+          background-color: #343a40;
+          padding: 1rem;
+      }
+
+      .navbar .nav-link {
+          color: #fff;
+          margin-right: 1rem;
+          text-decoration: none;
+      }
+
+      .navbar .nav-link:hover {
+          color: #ccc;
+      }
+
+      .navbar .nav-link.active {
+          font-weight: bold;
+      }
+
+      .container {
+          max-width: 900px;
+          margin: 2rem auto;
+          background: #fff;
+          padding: 2rem;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1, h2 {
+          text-align: center;
+          margin-bottom: 1.5rem;
+          color: #333;
+      }
+
+      .form-group {
+          margin-bottom: 1rem;
+      }
+
+      .form-label {
+          display: block;
+          margin-bottom: 0.5rem;
+          color: #555;
+      }
+
+      .form-control {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+
+      .btn {
+          display: inline-block;
+          padding: 0.75rem 1.25rem;
+          font-size: 1rem;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: center;
+      }
+
+      .btn-primary {
+          background-color: #007bff;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+          background-color: #0056b3;
+      }
+
+      .btn-danger {
+          background-color: #dc3545;
+      }
+
+      .btn-danger:hover:not(:disabled) {
+          background-color: #c82333;
+      }
+
+      .btn-dark {
+          background-color: #343a40;
+      }
+
+      .btn-dark:hover:not(:disabled) {
+          background-color: #23272b;
+      }
+
+      .btn-primary:disabled, .btn-danger:disabled, .btn-dark:disabled {
+          background-color: #ccc;
+      }
+
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 1.5rem;
+      }
+
+      th, td {
+          padding: 1rem;
+          border: 1px solid #ddd;
+          text-align: left;
+      }
+
+      th {
+          background-color: #f8f9fa;
+      }
+
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+
+      .d-flex {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+      }
+  </style>
+</head>
+<body>
+    <!--Navbar consists only Home and Add User-->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+      <div class="navbar-nav">
+        <a class="nav-link active text-white" aria-current="page" routerLink="/">Inicio</a>
+        <a class="nav-link text-white" routerLink="/add">Agregar Alumno</a>
+        <a class="nav-link text-white" routerLink="/courses">Cursos</a>
+        <a class="nav-link text-white" routerLink="/addcourse">Agregar Curso</a>
+      </div>
+    </nav>
+      <!--Table to display all the users-->
+        <!--container-->
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Lista de Personas Aseguradas</h1>
+                    <!--Add button -->
+                      <div class="d-flex justify-content-between">
+                        <button class="btn btn-dark" routerLink="/add">Nueva Persona Asegurada</button>
+                        <button class="btn btn-dark" routerLink="/departments">Lista de Departamentos</button>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let student of students">
+                            <th scope="row">{{student.id}}</th>
+                            <td>{{student.name}}</td>
+                            <td>{{student.lastname}}</td>
+                            <td>{{student.course}}</td>
+                            <td>
+                              <button class="btn btn-primary" routerLink="/update/{{student.id}}">Editar</button>
+                              <button class="btn btn-danger mx-2" (click)="deleteStudent(student.id)">Eliminar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>
